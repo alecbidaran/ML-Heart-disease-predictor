@@ -1,0 +1,68 @@
+<circularBAR>
+    canvas.before:
+        Color:
+            rgba:root.bar_color+[0.3]
+        Line:
+            width:root.bar_width
+            ellipse:(self.x,self.y,self.width,self.height,0,360)
+    canvas.after:
+        Color:
+            rgba:root.bar_color+[0.3]
+        Line:
+            width:root.bar_width
+            ellipse:(self.x,self.y,self.width,self.height,0,root.bar_value)
+    MDLabel:
+        text:str(root.bar_value)+".BPM"
+        font_size:"18sp"
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        halign:"center"
+        color:root.bar_color
+
+
+MDFloatLayout:
+        
+    MDLabel:
+        text:"Add your vascular information"
+        pos_hint: {'center_x': .4, 'center_y': .95}
+            
+        halign: "center"
+    circularBAR:
+        id:heart_rate
+        size_hint:None,None
+        padding:1
+        pos_hint:{'center_x': .8, 'center_y': .8}
+    MDTextField:
+        id:age
+        hint_text: 'Age'
+        size_hint_x:0.5
+        pos_hint: {'center_x': .4, 'center_y': .7}
+    MDTextField:
+        id:sex
+        hint_text: 'Sex'
+        size_hint_x:0.5
+        pos_hint: {'center_x': .4, 'center_y': .6}
+    MDTextField:
+        id:Cholestrol
+        hint_text: 'Cholestrol'
+        size_hint_x:0.5
+        pos_hint: {'center_x': .4, 'center_y': .5}
+    MDTextField:
+        id:slope
+        hint_text: 'ST_slope'
+        size_hint_x:0.5
+        pos_hint: {'center_x': .4, 'center_y': .4}
+    MDTextField:
+        id:Chest_pain
+        hint_text: 'Chest Pain Type'
+        size_hint_x:0.5
+        pos_hint: {'center_x': .4, 'center_y': .3}
+
+    MDRectangleFlatButton:
+        text:'send'
+        pos_hint: {'center_x': .4, 'center_y': .2}
+        on_release:app.send_values(age.text,sex.text,Cholestrol.text,slope.text,Chest_pain.text,heart_rate.bar_value)
+    MDLabel:
+        id:pred
+        pos_hint: {'center_x': .6, 'center_y': .1}
+        
+
